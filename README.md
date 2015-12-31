@@ -18,10 +18,10 @@ Ensure that your environment has a JavaScript interpreter supported by [ExecJS](
 ```ruby
 require 'eslintrb'
 
-eslintrb.lint(File.read("source.js"))
+Eslintrb.lint(File.read("source.js"), :defaults)
 # => array of warnings
 
-eslintrb.report(File.read("source.js"))
+Eslintrb.report(File.read("source.js"), :defaults)
 # => string
 ```
 

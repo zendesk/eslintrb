@@ -13,4 +13,3 @@ execjs_runtimes = {
 if ENV["EXECJS_RUNTIME"] && execjs_runtimes[ENV["EXECJS_RUNTIME"]]
   gem execjs_runtimes[ENV["EXECJS_RUNTIME"]], :group => :development
 end
-

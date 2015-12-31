@@ -14,7 +14,7 @@ module Eslintrb
             result += indent + 'fatal error'
           else
             result += indent + 'line ' + error["line"].to_s + ', col ' +
-              error["character"].to_s + ', ' + error["reason"].to_s + "\n"
+              error["column"].to_s + ', ' + error["message"].to_s + "\n"
           end
         end
 
