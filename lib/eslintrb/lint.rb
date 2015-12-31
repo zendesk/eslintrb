@@ -12,10 +12,18 @@ module Eslintrb
     DEFAULTS = {
       rules: {
         'no-bitwise' => 2,
+        'curly' => 2,
+        'eqeqeq' => 2,
+        'guard-for-in' => 2,
+        'no-use-before-define' => 2,
+        'no-caller' => 2,
+        'no-new-func' => 2,
+        'no-plusplus' => 2,
         'no-undef' => 2,
-        :curly => 2,
-        :eqeqeq => 2,
-        :strict => 2
+        'strict' => 2
+      },
+      env: {
+        'browser' => true
       }
     }
 

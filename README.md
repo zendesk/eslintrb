@@ -49,22 +49,21 @@ If you pass `:defaults` as option, it is the same as if you pass following
 
 ```
 {
-  :bitwise => true,
-  :curly => true,
-  :eqeqeq => true,
-  :forin => true,
-  :immed => true,
-  :latedef => true,
-  :newcap => true,
-  :noarg => true,
-  :noempty => true,
-  :nonew => true,
-  :plusplus => true,
-  :regexp => true,
-  :undef => true,
-  :strict => true,
-  :trailing => true,
-  :browser => true
+  rules: {
+    'no-bitwise' => 2,
+    'curly' => 2,
+    'eqeqeq' => 2,
+    'guard-for-in' => 2,
+    'no-use-before-define' => 2,
+    'no-caller' => 2,
+    'no-new-func' => 2,
+    'no-plusplus' => 2,
+    'no-undef' => 2,
+    'strict' => 2
+  },
+  env: {
+    'browser' => true
+  }
 }
 ```
 

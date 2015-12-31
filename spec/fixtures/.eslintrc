@@ -1,4 +1,8 @@
 {
-  "unused": true,
-  "predef": [ "foo" ]
+  "rules": {
+    "no-unused-vars": 2
+  },
+  "globals": {
+    "foo": true
+  }
 }
