@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["ocke", "stereobooster"]
   s.email       = ["ocke@exploder.nl", "stereobooster@gmail.com"]
   s.homepage    = "https://github.com/ocke/eslintrb"
-  s.summary     = %q{Ruby wrapper for JSHint}
-  s.description = %q{Ruby wrapper for JSHint. The main difference from jshint gem it does not depend on Java. Instead, it uses ExecJS}
+  s.summary     = %q{Ruby wrapper for ESLint}
+  s.description = %q{Ruby wrapper for ESLint. The main difference from eslint gem it does not depend on Java. Instead, it uses ExecJS}
   s.license     = "MIT"
 
   s.files         = `git ls-files`.split("\n")

@@ -1,4 +1,4 @@
-# Define a task library for running JSHint contexts.
+# Define a task library for running ESLint contexts.
 
 require 'rake'
 require 'rake/tasklib'
@@ -8,7 +8,7 @@ require 'eslintrb'
 module Eslintrb
 
   class EslintTask < ::Rake::TaskLib
-    # Name of JSHint task. (default is :jshint)
+    # Name of ESLint task. (default is :eslint)
     attr_accessor :name
 
     # Glob pattern to match JavaScript files. (default is './**/*.js')
@@ -19,7 +19,7 @@ module Eslintrb
 
     attr_accessor :globals
 
-    # Whether or not to fail Rake when an error occurs (typically when Jshint check fail).
+    # Whether or not to fail Rake when an error occurs (typically when ESLint check fail).
     # Defaults to true.
     attr_accessor :fail_on_error
 
@@ -34,7 +34,7 @@ module Eslintrb
     attr_accessor :exclude_js_files
 
     # Defines a new task, using the name +name+.
-    def initialize(name=:jshint)
+    def initialize(name=:eslint)
       @name = name
       @pattern = nil
       @js_files = nil
@@ -53,13 +53,13 @@ module Eslintrb
 
       actual_name = Hash === name ? name.keys.first : name
       unless ::Rake.application.last_comment
-        desc "Run JShint"
+        desc "Run ESLint"
       end
       task name do
         unless js_file_list.empty?
           result = Eslintrb::report(js_file_list, @options, @globals, STDERR)
           if result.size > 0
-            abort("JSHint check failed") if fail_on_error
+            abort("ESLint check failed") if fail_on_error
           end
         end
       end

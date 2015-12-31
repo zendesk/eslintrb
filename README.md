@@ -29,7 +29,7 @@ Or you can use it with rake
 
 ```ruby
 require "eslintrb/eslinttask"
-eslintrb::eslintTask.new :eslint do |t|
+Eslintrb::EslintTask.new :eslint do |t|
   t.pattern = 'javascript/**/*.js'
   t.options = :defaults
 end
@@ -38,9 +38,9 @@ end
 When initializing `eslintrb`, you can pass options
 
 ```ruby
-eslintrb::Lint.new('no-undef' => true).lint(source)
+Eslintrb::Lint.new('no-undef' => true).lint(source)
 # Or
-eslintrb.lint(source, 'no-undef' => true)
+Eslintrb.lint(source, 'no-undef' => true)
 ```
 
 [List of all available options](http://eslint.org/docs/rules/)
