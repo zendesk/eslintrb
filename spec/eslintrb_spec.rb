@@ -1,68 +1,55 @@
 # encoding: UTF-8
-require "jshintrb"
+require "eslintrb"
 
 def gen_file source, option, value
-  "/*jshint " + option.to_s + ": " + value.to_s + "*/\n" + source
+  "/*eslint " + option.to_s + ": " + value.to_s + "*/\n" + source
 end
 
-describe "Jshintrb" do
+describe "Eslintrb" do
 
   it "support options" do
     options = {
-      :bitwise => "var a = 1|1;",
-      :curly => "while (true)\n  var a = 'a';",
-      # :eqeqeq => true,
-      # :forin => true,
-      # :immed => true,
-      # :latedef => true,
-      # :newcap => true,
-      # :noarg => true,
-      # :noempty => true,
-      # :nonew => true,
-      # :plusplus => true,
-      # :regexp => true,
-      :undef => "if (a == 'a') { var b = 'b'; }"
-      # :strict => true,
-      # :trailing => true,
-      # :browser => true
+      'no-bitwise' => "var a = 1|1;",
+      'curly' => "while (true)\n  var a = 'a';",
+      'no-unused-vars' => "if (a == 'a') { var b = 'b'; }"
     }
 
     options.each do |option, source|
-      Jshintrb.lint(source, option => false).length.should eq 0
-      Jshintrb.lint(source, option => true).length.should eq 1
+      expect(Eslintrb.lint(source, rules: { option => 0 } ).length).to eq 0
+      expect(Eslintrb.lint(source, rules: { option => 2 } ).length).to eq 1
     end
 
     options.each do |option, source|
-      Jshintrb.lint(gen_file(source, option, false)).length.should eq 0
-      Jshintrb.lint(gen_file(source, option, true)).length.should eq 1
+      expect(Eslintrb.lint(gen_file(source, option, 0)).length).to eq 0
+      expect(Eslintrb.lint(gen_file(source, option, 1)).length).to eq 1
     end
   end
 
   it "supports globals" do
     source = "foo();"
-    Jshintrb.lint(source, :defaults, [:foo]).length.should eq 0
-    Jshintrb.lint(source, :defaults).length.should eq 1
+    expect(Eslintrb.lint(source, :defaults, [:foo]).length).to eq 0
+    expect(Eslintrb.lint(source, :defaults).length).to eq 1
   end
 
-  it "supports .jshintrc" do
+  it "supports .eslintrc" do
     basedir = File.join(File.dirname(__FILE__), "fixtures")
     source = "var hoge;"
     Dir.chdir basedir do
-      Jshintrb.lint(source, :jshintrc).length.should eq 1
+      expect(Eslintrb.lint(source, :jshintrc).length).to eq 1
     end
   end
 
-  it "supports globals from .jshintrc" do
+  it "supports globals from .eslintrc" do
     basedir = File.join(File.dirname(__FILE__), "fixtures")
     source = "foo();"
     Dir.chdir basedir do
-      Jshintrb.lint(source, :jshintrc).length.should eq 0
+      expect(Eslintrb.lint(source, :jshintrc).length).to eq 0
     end
   end
 
-  describe "Jshintrb#report" do
+  describe "Eslintrb#report" do
     it "accepts a single argument" do
-      expect{ Jshintrb.report('var working = false;') }.to_not raise_error
+      expect{ Eslintrb.report('var working = false;') }.to_not raise_error
     end
   end
 

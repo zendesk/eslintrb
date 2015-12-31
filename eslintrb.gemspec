@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "jshintrb/version"
+require "eslintrb/version"
 
 Gem::Specification.new do |s|
-  s.name        = "jshintrb"
-  s.version     = Jshintrb::VERSION
-  s.authors     = ["stereobooster"]
-  s.email       = ["stereobooster@gmail.com"]
-  s.homepage    = "https://github.com/stereobooster/jshintrb"
+  s.name        = "eslintrb"
+  s.version     = Eslintrb::VERSION
+  s.authors     = ["ocke", "stereobooster"]
+  s.email       = ["ocke@exploder.nl", "stereobooster@gmail.com"]
+  s.homepage    = "https://github.com/ocke/eslintrb"
   s.summary     = %q{Ruby wrapper for JSHint}
   s.description = %q{Ruby wrapper for JSHint. The main difference from jshint gem it does not depend on Java. Instead, it uses ExecJS}
   s.license     = "MIT"

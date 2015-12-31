@@ -1,4 +1,4 @@
-module Jshintrb
+module Eslintrb
   module Reporter
     class Default
 

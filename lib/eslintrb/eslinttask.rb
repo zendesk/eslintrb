@@ -3,11 +3,11 @@
 require 'rake'
 require 'rake/tasklib'
 
-require 'jshintrb'
+require 'eslintrb'
 
-module Jshintrb
+module Eslintrb
 
-  class JshintTask < ::Rake::TaskLib
+  class EslintTask < ::Rake::TaskLib
     # Name of JSHint task. (default is :jshint)
     attr_accessor :name
 
@@ -57,7 +57,7 @@ module Jshintrb
       end
       task name do
         unless js_file_list.empty?
-          result = Jshintrb::report(js_file_list, @options, @globals, STDERR)
+          result = Eslintrb::report(js_file_list, @options, @globals, STDERR)
           if result.size > 0
             abort("JSHint check failed") if fail_on_error
           end

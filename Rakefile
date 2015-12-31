@@ -6,13 +6,13 @@ end
 
 require "multi_json"
 
-def jshint_version
-  package = File.expand_path("../vendor/jshint/package.json", __FILE__)
+def eslint_version
+  package = File.expand_path("../vendor/eslint/package.json", __FILE__)
   MultiJson.load(File.open(package, "r:UTF-8").read)["version"]
 end
 
-task :jshint_version do
-  p jshint_version
+task :eslint_version do
+  p eslint_version
 end
 
 require 'submodule'
@@ -24,8 +24,8 @@ Submodule::Task.new do |t|
     end
 
     t.after_pull do
-      cp "vendor/jshint/dist/jshint.js", "lib/js/jshint.js"
-      sh "git add lib/js/jshint.js"
+      cp "vendor/eslint/build/eslint.js", "lib/js/eslint.js"
+      sh "git add lib/js/eslint.js"
     end
 end
 

@@ -1,47 +1,49 @@
-# jshintrb
-[![Build Status](https://secure.travis-ci.org/stereobooster/jshintrb.png?branch=master)](http://travis-ci.org/stereobooster/jshintrb)
+# eslintrb
+[![Build Status](https://secure.travis-ci.org/ocke/eslintrb.png?branch=master)](http://travis-ci.org/ocke/eslintrb)
 
-Ruby wrapper for [JSHint](https://github.com/jshint/jshint/). The main difference from [jshint](https://github.com/liquid/jshint_on_rails) it does not depend on Java. Instead it uses [ExecJS](https://github.com/sstephenson/execjs).
+Forked from [jshintrb](https://github.com/stereobooster/jshintrb) who did all the hard work.
+
+Ruby wrapper for [ESLint](https://github.com/eslint/eslint/). The main difference from [eslint](https://github.com/liquid/eslint_on_rails) it does not depend on Java. Instead it uses [ExecJS](https://github.com/sstephenson/execjs).
 
 ## Installation
 
-`jshintrb` is available as ruby gem.
+`eslintrb` is available as ruby gem.
 
-    $ gem install jshintrb
+    $ gem install eslintrb
 
 Ensure that your environment has a JavaScript interpreter supported by [ExecJS](https://github.com/sstephenson/execjs). Usually, installing `therubyracer` gem is the best alternative.
 
 ## Usage
 
 ```ruby
-require 'jshintrb'
+require 'eslintrb'
 
-Jshintrb.lint(File.read("source.js"))
+eslintrb.lint(File.read("source.js"))
 # => array of warnings
 
-Jshintrb.report(File.read("source.js"))
+eslintrb.report(File.read("source.js"))
 # => string
 ```
 
 Or you can use it with rake
 
 ```ruby
-require "jshintrb/jshinttask"
-Jshintrb::JshintTask.new :jshint do |t|
+require "eslintrb/eslinttask"
+eslintrb::eslintTask.new :eslint do |t|
   t.pattern = 'javascript/**/*.js'
   t.options = :defaults
 end
 ```
 
-When initializing `Jshintrb`, you can pass options
+When initializing `eslintrb`, you can pass options
 
 ```ruby
-Jshintrb::Lint.new(:undef => true).lint(source)
+eslintrb::Lint.new('no-undef' => true).lint(source)
 # Or
-Jshintrb.lint(source, :undef => true)
+eslintrb.lint(source, 'no-undef' => true)
 ```
 
-[List of all available options](http://www.jshint.com/docs/options/)
+[List of all available options](http://eslint.org/docs/rules/)
 
 If you pass `:defaults` as option, it is the same as if you pass following
 
@@ -66,10 +68,10 @@ If you pass `:defaults` as option, it is the same as if you pass following
 }
 ```
 
-If you pass `:jshintrc` as option, `.jshintrc` file is loaded as option.
+If you pass `:eslintrc` as option, `.eslintrc` file is loaded as option.
 
 ## TODO
 
  - add more tests
  - add color reporter. Maybe [colorize](https://github.com/fazibear/colorize)
- - add cli. Support same options as [jshint/node-jshint](https://github.com/jshint/node-jshint/blob/master/lib/cli.js) 
+ - add cli. Support same options as [eslint/node-eslint](https://github.com/eslint/node-eslint/blob/master/lib/cli.js) 

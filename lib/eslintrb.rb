@@ -1,10 +1,10 @@
 # encoding: UTF-8
 
-require "jshintrb/version"
-require "jshintrb/lint"
-require "jshintrb/reporter/default"
+require "eslintrb/version"
+require "eslintrb/lint"
+require "eslintrb/reporter/default"
 
-module Jshintrb
+module Eslintrb
 
   def self.lint(source, options = nil, globals = nil)
     Lint.new(options, globals).lint(source)

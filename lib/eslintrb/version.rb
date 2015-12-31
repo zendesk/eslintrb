@@ -1,4 +1,4 @@
-module Jshintrb
-  VERSION = "0.3.0"
-  SUBMODULE = "bfcc86d6e51f53ae1e05cfdd33618e9bc0a9a957"
+module Eslintrb
+  VERSION = "2.0.0"
+  SUBMODULE = "3b9fe1f6aeb95a8b70535de4b9c143869fe53ce1"
 end

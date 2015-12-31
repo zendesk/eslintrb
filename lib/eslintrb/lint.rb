@@ -3,67 +3,59 @@
 require "execjs"
 require "multi_json"
 
-module Jshintrb
+module Eslintrb
 
   class Lint
     Error = ExecJS::Error
 
     # Default options for compilation
     DEFAULTS = {
-      :bitwise => true,
-      :curly => true,
-      :eqeqeq => true,
-      :forin => true,
-      :immed => true,
-      :latedef => true,
-      :newcap => true,
-      :noarg => true,
-      :noempty => true,
-      :nonew => true,
-      :plusplus => true,
-      :regexp => true,
-      :undef => true,
-      :strict => true,
-      :trailing => true,
-      :browser => true
+      rules: {
+        'no-bitwise' => 2,
+        'no-undef' => 2,
+        :curly => 2,
+        :eqeqeq => 2,
+        :strict => 2
+      }
     }
 
-    SourcePath = File.expand_path("../../js/jshint.js", __FILE__)
+    SourcePath = File.expand_path("../../js/eslint.js", __FILE__)
 
     def initialize(options = nil, globals = nil)
 
       if options == :defaults then
         @options = DEFAULTS.dup
       elsif options == :jshintrc then
-        raise '`.jshintrc` is not exist on current working directory.' unless File.exist?('./.jshintrc')
-        @options = MultiJson.load(File.read('./.jshintrc'))
+        raise '`.eslintrc` is not exist on current working directory.' unless File.exist?('./.eslintrc')
+        @options = MultiJson.load(File.read('./.eslintrc'))
       elsif options.instance_of? Hash then
         @options = options.dup
         # @options = DEFAULTS.merge(options)
       elsif options.nil?
         @options = nil
       else
-        raise 'Unsupported option for Jshintrb: ' + options.to_s
+        raise 'Unsupported option for Eslintrb: ' + options.to_s
       end
 
       @globals = globals
 
-      @context = ExecJS.compile("var window = {};\n" + File.open(SourcePath, "r:UTF-8").read)
+      @context = ExecJS.compile("var window = {}; \n" + File.open(SourcePath, "r:UTF-8").read)
     end
 
     def lint(source)
       source = source.respond_to?(:read) ? source.read : source.to_s
 
-      js = []
+      js = ["var errors;"]
       if @options.nil? and @globals.nil? then
-        js << "JSHINT(#{MultiJson.dump(source)});"
+        js << "errors = window.eslint.verify(#{MultiJson.dump(source)}, {});"
       elsif @globals.nil? then
-        js << "JSHINT(#{MultiJson.dump(source)}, #{MultiJson.dump(@options)});"
+        js << "errors = window.eslint.verify(#{MultiJson.dump(source)}, #{MultiJson.dump(@options)});"
       else
         globals_hash = Hash[*@globals.product([false]).flatten]
-        js << "JSHINT(#{MultiJson.dump(source)}, #{MultiJson.dump(@options)}, #{MultiJson.dump(globals_hash)});"
+        @options = @options.merge({globals: globals_hash})
+        js << "errors = window.eslint.verify(#{MultiJson.dump(source)}, #{MultiJson.dump(@options)});"
       end
-      js << "return JSHINT.errors;"
+      js << "return errors;"
 
       @context.exec js.join("\n")
     end
