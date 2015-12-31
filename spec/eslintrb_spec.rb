@@ -35,7 +35,7 @@ describe "Eslintrb" do
     basedir = File.join(File.dirname(__FILE__), "fixtures")
     source = "var hoge;"
     Dir.chdir basedir do
-      expect(Eslintrb.lint(source, :jshintrc).length).to eq 1
+      expect(Eslintrb.lint(source, :eslintrc).length).to eq 1
     end
   end
 
@@ -43,7 +43,7 @@ describe "Eslintrb" do
     basedir = File.join(File.dirname(__FILE__), "fixtures")
     source = "foo();"
     Dir.chdir basedir do
-      expect(Eslintrb.lint(source, :jshintrc).length).to eq 0
+      expect(Eslintrb.lint(source, :eslintrc).length).to eq 0
     end
   end
 

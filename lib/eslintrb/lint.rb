@@ -33,7 +33,7 @@ module Eslintrb
 
       if options == :defaults then
         @options = DEFAULTS.dup
-      elsif options == :jshintrc then
+      elsif options == :eslintrc then
         raise '`.eslintrc` is not exist on current working directory.' unless File.exist?('./.eslintrc')
         @options = MultiJson.load(File.read('./.eslintrc'))
       elsif options.instance_of? Hash then
