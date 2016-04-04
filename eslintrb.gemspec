@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.version     = Eslintrb::VERSION
   s.authors     = ["ocke", "stereobooster"]
   s.email       = ["ocke@exploder.nl", "stereobooster@gmail.com"]
-  s.homepage    = "https://github.com/ocke/eslintrb"
+  s.homepage    = "https://github.com/zendesk/eslintrb"
   s.summary     = %q{Ruby wrapper for ESLint}
-  s.description = %q{Ruby wrapper for ESLint. The main difference from eslint gem it does not depend on Java. Instead, it uses ExecJS}
+  s.description = %q{Ruby wrapper for ESLint. Uses ExecJS}
   s.license     = "MIT"
 
   s.files         = `git ls-files`.split("\n")
