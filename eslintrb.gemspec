@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
 
   # specify any dependencies here; for example:
   s.add_development_dependency "rspec"
+  s.add_development_dependency "bump"
   s.add_development_dependency "submodule", ">=0.0.3"
   s.add_runtime_dependency "rake"
 

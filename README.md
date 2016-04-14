@@ -1,5 +1,5 @@
 # eslintrb
-[![Build Status](https://secure.travis-ci.org/ocke/eslintrb.png?branch=master)](http://travis-ci.org/ocke/eslintrb)
+[![Build Status](https://secure.travis-ci.org/zendesk/eslintrb.png?branch=master)](http://travis-ci.org/zendesk/eslintrb)
 
 Forked from [jshintrb](https://github.com/stereobooster/jshintrb) who did all the hard work.
 
