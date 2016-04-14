@@ -73,4 +73,4 @@ If you pass `:eslintrc` as option, `.eslintrc` file is loaded as option.
 
  - add more tests
  - add color reporter. Maybe [colorize](https://github.com/fazibear/colorize)
- - add cli. Support same options as [eslint/node-eslint](https://github.com/eslint/node-eslint/blob/master/lib/cli.js) 
+ - add cli. Support same options as [eslint/eslint](https://github.com/eslint/eslint/blob/master/lib/cli.js)
