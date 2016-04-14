@@ -1,4 +1,5 @@
 require "bundler/gem_tasks"
+require "bump/tasks"
 
 [:build, :install, :release].each do |task_name|
   Rake::Task[task_name].prerequisites << :spec
