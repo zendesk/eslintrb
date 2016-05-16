@@ -35,7 +35,7 @@ Eslintrb::EslintTask.new :eslint do |t|
 end
 ```
 
-When initializing `eslintrb`, you can pass options
+When initializing `eslintrb`, you can pass an options Hash.
 
 ```ruby
 Eslintrb::Lint.new('no-undef' => true).lint(source)
@@ -45,32 +45,65 @@ Eslintrb.lint(source, 'no-undef' => true)
 
 [List of all available options](http://eslint.org/docs/rules/)
 
-If you pass `:defaults` as option, it is the same as if you pass following
+If you pass `:defaults` as option, it is the same as if you pass the following options Hash.
 
+```ruby
+options =
+  {
+    rules: {
+      'no-bitwise' => 2,
+      'curly' => 2,
+      'eqeqeq' => 2,
+      'guard-for-in' => 2,
+      'no-use-before-define' => 2,
+      'no-caller' => 2,
+      'no-new-func' => 2,
+      'no-plusplus' => 2,
+      'no-undef' => 2,
+      'strict' => 2
+    },
+    env: {
+      'browser' => true
+    }
+  }
+
+Eslintrb.lint(source, options)
+
+# Or
+
+Eslintrb.lint(source, :defaults)
 ```
+
+If you have a JSON `.eslintrc` file at the current directory you can pass `:eslintrc` as option and the file will be parsed. The resulting Hash will be used as options.
+
+
+```json
+// ./.eslintrc
 {
-  rules: {
-    'no-bitwise' => 2,
-    'curly' => 2,
-    'eqeqeq' => 2,
-    'guard-for-in' => 2,
-    'no-use-before-define' => 2,
-    'no-caller' => 2,
-    'no-new-func' => 2,
-    'no-plusplus' => 2,
-    'no-undef' => 2,
-    'strict' => 2
+  "rules": {
+    "no-bitwise":  2,
+    "curly":  2,
+    "eqeqeq":  2,
+    "guard-for-in":  2,
+    "no-use-before-define":  2,
+    "no-caller":  2,
+    "no-new-func":  2,
+    "no-plusplus":  2,
+    "no-undef":  2,
+    "strict":  2
   },
-  env: {
-    'browser' => true
+  "env": {
+    "browser":  true
   }
 }
 ```
 
-If you pass `:eslintrc` as option, `.eslintrc` file is loaded as option.
+```ruby
+Eslintrb.lint(source, :eslintrc)
+```
 
 ## TODO
 
- - add more tests
- - add color reporter. Maybe [colorize](https://github.com/fazibear/colorize)
- - add cli. Support same options as [eslint/node-eslint](https://github.com/eslint/node-eslint/blob/master/lib/cli.js) 
+ - Add more tests
+ - Add color reporter. Maybe [colorize](https://github.com/fazibear/colorize)
+ - Add cli. Support same options as [eslint/node-eslint](https://github.com/eslint/node-eslint/blob/master/lib/cli.js)
